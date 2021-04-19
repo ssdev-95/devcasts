@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "bcss": "tailwindcss build src/styles/globals.css -o public/styles/globals.css",
     "start": "next start"
   },
   "dependencies": {
