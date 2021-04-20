@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
                     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
                     <link rel="shortcut icon" href="favicon.svg" type="image/x-icon"/>
                 </Head>
-                <body className="font-inter">
+                <body className="font-inter box-border m-0 p-0">
                     <Main />
                     <NextScript />
                 </body>

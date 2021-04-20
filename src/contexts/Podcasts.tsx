@@ -5,15 +5,23 @@ interface ProviderProps {
 }
 
 interface Podcast {
+    id: string;
     thumbnail: string;
-    name: string;
-    integrants: string;
-    duration: number;
+    title: string;
+    description: string;
+    members: string;
+    file: {
+        url: string;
+        type: string;
+        duration: number;
+    };
     published_at: string;
 }
 
 interface ContextData {
-    podcasts: Podcast[];
+    podcasts: any[];
+    onRetrieve: (params: any) => void;
+    formatDuration: (params: number) => string;
 }
 
 export const PodcastsContext = createContext({} as ContextData)
@@ -21,58 +29,96 @@ export const PodcastsContext = createContext({} as ContextData)
 export const PodcastsProvider = ({children}: ProviderProps) => {
     const initials = [
         {
+            id: '',
             thumbnail: 'https://github.com/diego3g.png',
-            name: 'A vida e boa',
-            integrants: 'string',
-            duration: 5778,
+            title: 'A vida e boa',
+            description: '',
+            members: 'Diegao, Maykao',
+            file: {
+                url: '',
+                type: '',
+                duration: 5778,
+            },
             published_at: '19 Apr 21'
         },
         {
+            id: '',
             thumbnail: 'https://github.com/maykbrito.png',
-            name: 'Como programar like a god',
-            integrants: 'string',
-            duration: 5778,
+            title: 'Como programar like a god',
+            description: '',
+            members: 'Maykao',
+            file: {
+                url: '',
+                type: '',
+                duration: 5778,
+            },
             published_at: '19 Apr 21'
         },
         {
             thumbnail: 'https://github.com/xSallus.png',
-            name: 'Bora viver',
-            integrants: 'string',
-            duration: 5778,
+            title: 'Bora viver',
+            members: 'Others',
+            file: {
+                url: '',
+                type: '',
+                duration: 5778,
+            },
             published_at: '19 Apr 21'
         },
         {
             thumbnail: 'https://github.com/PatoGordo.png',
-            name: 'Nao desita de voce',
-            integrants: 'string',
-            duration: 5778,
+            title: 'Nao desita de voce',
+            members: 'PatoGordo, Others',
+            file: {
+                url: '',
+                type: '',
+                duration: 5778,
+            },
             published_at: '19 Apr 21'
         },
         {
             thumbnail: 'https://github.com/WelissonLuca.png',
-            name: 'A vida e incrivel',
-            integrants: 'string',
-            duration: 5778,
+            title: 'A vida e incrivel',
+            members: 'Lucao, Others',
+            file: {
+                url: '',
+                type: '',
+                duration: 5778,
+            },
             published_at: '19 Apr 21'
         },
         {
             thumbnail: 'https://github.com/filipedeschamps.png',
-            name: 'A vida e delicicnha',
-            integrants: 'string',
-            duration: 5778,
+            title: 'A vida e delicicnha',
+            members: 'Deschamps',
+            file: {
+                url: '',
+                type: '',
+                duration: 5778,
+            },
             published_at: '19 Apr 21'
         },
     ]
 
     const [podcasts, setPodcasts] = useState(initials)
 
-    // const onRetrieve = (podcasts) => {
-    //     setPodcasts(podcasts)
-    // }
+    const onRetrieve = (podcasts) => {
+        setPodcasts(podcasts)
+    }
+
+    const formatDuration = (dur: Number) => {
+        const durInHrs = Math.floor(Number(dur) / 3600)
+        const durInMins = Number(dur) % 3600
+        const durInSecs = durInMins/60
+
+        return (`${durInHrs}:${durInMins}:${durInSecs}`)
+    }
 
     return (
         <PodcastsContext.Provider value={{
-            podcasts
+            podcasts,
+            onRetrieve,
+            formatDuration
         }}>
             {children}
         </ PodcastsContext.Provider>
