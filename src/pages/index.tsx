@@ -14,13 +14,7 @@ export default function Home(props) {
 	}, [])
 
 	return (
-		<div className="container">
-			<div className="aside">
-				<Header />
-				<Dashboard />
-			</div>
-			<Player />
-		</div>
+		<div></div>
 	)
 }
 

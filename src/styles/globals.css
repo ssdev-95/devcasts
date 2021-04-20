@@ -6,9 +6,10 @@
     margin: 0;
 }
 
-html, body {
+body {
     height: 100vh;
     width: 100vw;
+    
     font-family: 'Inter';
 }
 
@@ -16,5 +17,9 @@ html, body {
     width: 100%;
     height: 100%;
 
+    display: flex;
+}
+
+.container main {
     display: flex;
 }

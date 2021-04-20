@@ -4,11 +4,15 @@ import colors from '../../../colors.json'
 export const Container = styled.div`
     height: 4rem;
     width: 63.5rem;
+
     background: ${colors.items.background};
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 2rem 3rem;
+    
     color: ${colors.text.body['300']};
     font-weight: bold;
 `
