@@ -12,9 +12,9 @@ export default function Dashboard() {
             <div className="flex flex-col gap-2">
                 <span className="font-bold text-items-line text-2xl">Latest added</span>
                 <div className="w-full h-36 flex overflow-x-scroll">
-                    {
+                    {/* {
                         podcasts.map(cast => <Card episode={cast} />)
-                    }
+                    } */}
                 </div>
             </div>
             <div className="py-2">
@@ -30,7 +30,7 @@ export default function Dashboard() {
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                        {/* {
                             podcasts
                                 .map(cast => (<tr>
                                     <td className="flex">
@@ -45,7 +45,7 @@ export default function Dashboard() {
                                     </td>
                                 </tr>)
                                 )
-                        }
+                        } */}
                     </tbody>
                 </table>
             </div>

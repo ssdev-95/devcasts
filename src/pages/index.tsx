@@ -14,8 +14,8 @@ export default function Home(props) {
 	}, [])
 
 	return (
-		<div className="w-full h-screen flex overflow-hidden">
-			<div className="h-screen w-2/3">
+		<div className="container">
+			<div className="aside">
 				<Header />
 				<Dashboard />
 			</div>
