@@ -1,30 +1,61 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
+import { GetStaticProps } from 'next'
 
-import Header from '../components/Header'
-import Player from '../components/Player'
-import Dashboard from '../components/Dashboard'
+import { format, parseISO } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
-import { PodcastsContext } from '../contexts/Podcasts'
+import { api } from '../services/api'
+import { formatDuration } from '../utils/formatDuration'
 
-export default function Home(props) {
-	const {onRetrieve} = useContext(PodcastsContext)
+interface Episode {
+	id: string;
+	title: string;
+	thumbnail: string;
+	member: string;
+	publishedAt: string;
+	duration: number;
+	durationString: string;
+	description: string;
+	url: string;
+}
 
-	useEffect(()=>{
-		onRetrieve(props.episodes)
-	}, [])
+interface HomeProps {
+	episodes: Episode[];
+}
+
+export default function Home({ episodes }: HomeProps) {
 
 	return (
-		<div></div>
+		<div>{ /*JSON.stringify(episodes)*/ }</div>
 	)
 }
 
-export async function getStaticProps() {
-	const response = await fetch('http://localhost:3333/episodes')
-	const data = await response.json()
+export const getStaticProps: GetStaticProps = async () => {
+	const { data } = await api.get('episodes', {
+		params: {
+			_limit: 12,
+			_sort: 'published_at',
+			_order: 'desc'
+		}
+	})
+
+	const episodes = data.map(ep=>{
+		return {
+			id: ep.id,
+			title: ep.title,
+			thumbnail: ep.thumbnail,
+			member: ep.members,
+			publishedAt: format(parseISO(ep.published_at), 'd MMM yy', { locale: ptBR}),
+			duration: Number(ep.file.duration),
+			durationString: formatDuration(Number(ep.file.duration)),
+			description: ep.description,
+			url: ep.file.url
+		}
+	})
 
 	return {
 		props: {
-			episodes: data,
+			episodes
 		},
 		revalidate: 60*60*8
 	}
