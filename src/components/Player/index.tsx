@@ -1,7 +1,7 @@
 import React from 'react'
 import PlayerButton from '../PlayerButton'
 
-import { PlayerContainer, Header, Actions, Timer } from './styles'
+import { PlayerContainer, Header, Actions, Timer, Section, Footer } from './styles'
 import colors from '../../../colors.json'
 
 export default function Player() {
@@ -11,10 +11,10 @@ export default function Player() {
                 <img src="favicon.svg" />
                 <span>Playing now</span>
             </Header>
-            <div>
+            <Section>
                 <span>Select a podcast to listen</span>
-            </div>
-            <div>
+            </Section>
+            <Footer>
                 <Timer>
                     <span>00 : 00</span>
                     <div></div>
@@ -33,7 +33,7 @@ export default function Player() {
                     />
                     <PlayerButton
                       angle={0}
-                      background={colors.primary.purple["100"]}
+                      background={colors.primary.purple.soft}
                       icon="icons/play.svg"
                     />
                     <PlayerButton
@@ -47,7 +47,7 @@ export default function Player() {
                       icon="icons/repeat.svg"
                     />
                 </Actions>
-            </div>
+            </Footer>
         </PlayerContainer>
     )
 }

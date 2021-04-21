@@ -1,9 +1,9 @@
 {
   "text": {
     "body": {
-      "100": "#FFFFFF",
-      "200": "#AFB2B1",
-      "300": "#808080"
+      "soft": "#FFFFFF",
+      "medium": "#AFB2B1",
+      "dark": "#808080"
     },
     "heading": "#494D4B"
   },
@@ -15,9 +15,9 @@
   "primary": {
     "green": "#04D361",
     "purple": {
-      "100": "#9F75FF",
-      "200": "#8257E5",
-      "300": "#6F48C9"
+      "soft": "#9F75FF",
+      "medium": "#8257E5",
+      "dark": "#6F48C9"
     }
   }
 }

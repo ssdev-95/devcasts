@@ -11,6 +11,6 @@ export const Button = styled.div`
     border-radius: 25%;
 
     &:hover {
-        background-color: ${colors.primary.purple['200']};
+        background-color: ${colors.primary.purple.medium};
     }
 `

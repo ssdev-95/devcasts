@@ -28,9 +28,7 @@ interface HomeProps {
 export default function Home({ episodes }: HomeProps) {
 
 	return (
-		<Main>
-			<p>lol</p>
-		</Main>
+		<Main></Main>
 	)
 }
 

@@ -13,7 +13,7 @@ export const Container = styled.div`
 
     padding: 2rem 3rem;
     
-    color: ${colors.text.body['300']};
+    color: ${colors.text.body.dark};
     font-weight: bold;
 `
 
