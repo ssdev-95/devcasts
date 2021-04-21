@@ -1,12 +1,13 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { format, parseISO } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
-import { api } from '../services/api'
 import { formatDuration } from '../utils/formatDuration'
+import { api } from '../services/api'
 
 import Card from '../components/Card'
 import { Main, Section } from '../styles/home'
@@ -19,7 +20,6 @@ interface Episode {
 	publishedAt: string;
 	duration: number;
 	durationString: string;
-	description: string;
 	url: string;
 }
 
@@ -48,12 +48,14 @@ export default function Home({ latestEps, allEps }: HomeProps) {
 				<h2>All Episodes</h2>
 				<table cellSpacing={0}>
 					<thead>
-						<th></th>
-						<th>Podcast</th>
-						<th>Members</th>
-						<th>Date</th>
-						<th>Duration</th>
-						<th></th>
+						<tr>
+							<th></th>
+							<th>Podcast</th>
+							<th>Members</th>
+							<th>Date</th>
+							<th>Duration</th>
+							<th></th>
+						</tr>
 					</thead>
 					<tbody>{
 						allEps.map(ep=>{
@@ -69,7 +71,9 @@ export default function Home({ latestEps, allEps }: HomeProps) {
 										/>
 									</td>
 									<td>
-										<a href="">{ep.title}</a>
+										<Link href={`/episodes/${ep.id}`}>
+											<a>{ep.title}</a>
+										</Link>
 									</td>
 									<td>{ep.members}</td>
 									<td style={{width:'110px'}}>{ep.publishedAt}</td>
@@ -107,7 +111,6 @@ export const getStaticProps: GetStaticProps = async () => {
 			publishedAt: format(parseISO(ep.published_at), 'd MMM yy', { locale: ptBR}),
 			duration: Number(ep.file.duration),
 			durationString: formatDuration(Number(ep.file.duration)),
-			description: ep.description,
 			url: ep.file.url
 		}
 	})

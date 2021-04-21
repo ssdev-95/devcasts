@@ -1,10 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Container, Details } from './styles'
 
 export default function Card({episode}: any) {
     const {
+        id,
         title,
         thumbnail,
         publishedAt,
@@ -22,7 +24,9 @@ export default function Card({episode}: any) {
                objectFit="cover"
             />
             <Details>
-                <a href="">{title}</a>
+                <Link href={`/episodes/${id}`}>
+                    <a>{title}</a>
+                </Link>
                 <p>{members}</p>
                 <span>{publishedAt}</span>
                 <span>{durationString}</span>
