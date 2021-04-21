@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from './styles'
 
 interface PlayerButtonProps {
     icon: string;
@@ -8,8 +9,9 @@ interface PlayerButtonProps {
 
 export default function PlayerButton({icon, background, angle}: PlayerButtonProps) {
     return (
-        <div className={`flex items-center py-3 px-4 justify-center bg-${background} hover:bg-primary-purple-200 cursor-pointer rounded-xl`}>
-            <img className={`transform rotate-${angle} p-0 m-0 filter sepia`} src={icon} />
-        </div>
+        <Button
+          style={{background: background}}>
+            <img style={{transform:`rotate(${angle}deg)`}} src={icon} />
+        </Button>
     )
 }

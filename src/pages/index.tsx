@@ -7,6 +7,8 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { api } from '../services/api'
 import { formatDuration } from '../utils/formatDuration'
 
+import { Main } from '../styles/home'
+
 interface Episode {
 	id: string;
 	title: string;
@@ -26,7 +28,9 @@ interface HomeProps {
 export default function Home({ episodes }: HomeProps) {
 
 	return (
-		<div>{ /*JSON.stringify(episodes)*/ }</div>
+		<Main>
+			<p>lol</p>
+		</Main>
 	)
 }
 

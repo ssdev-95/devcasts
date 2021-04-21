@@ -17,6 +17,11 @@ export const PlayerContainer = styled.div`
     color: ${colors.items.line};
 `
 
+export const Header = styled.div`
+    display: flex;
+    align-items: center;
+`
+
 export const Timer = styled.div`
     display: flex;
     gap: .25rem;
@@ -30,5 +35,5 @@ export const Actions = styled.div`
     align-items: center;
     justify-content: center;
 
-    gap: .5rem;
+    gap: .75rem;
 `
