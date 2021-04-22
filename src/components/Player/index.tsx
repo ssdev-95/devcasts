@@ -1,25 +1,60 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import Image from 'next/image'
+import Slider from 'rc-slider'
+
 import PlayerButton from '../PlayerButton'
 
-import { PlayerContainer, Header, Actions, Timer, Section, Footer } from './styles'
+import { PlayerContext } from '../../contexts/Player'
+
+import { PlayerContainer, Header, Actions, Timer, Empty, Footer, Playing } from './styles'
+
 import colors from '../../../colors.json'
+import 'rc-slider/assets/index.css'
 
 export default function Player() {
+    const { podcasts, currentEpIndex, isPlaying } = useContext(PlayerContext)
+
+    const episode = podcasts[currentEpIndex]
+
     return(
         <PlayerContainer>
             <Header>
                 <img src="favicon.svg" />
-                <span>Playing now</span>
+                <span>{episode?episode.title:'Playing now'}</span>
             </Header>
-            <Section>
-                <span>Select a podcast to listen</span>
-            </Section>
+           {
+             episode ? (
+                <Playing>
+                    <Image
+                      width={592} 
+                      height={592}
+                      src={episode.thumbnail}
+                      objectFit="cover"
+                      alt="Currently Playing"
+                    />
+                    <strong>{episode.title}</strong>
+                    <span>{episode.members}</span>
+                </Playing>
+             ) : (
+                <Empty>
+                    <span>Select a podcast to listen</span>
+                </Empty>
+             )
+           }
             <Footer>
-                <Timer>
-                    <span>00 : 00</span>
-                    <div></div>
-                    <span>00 : 00</span>
-                </Timer>
+                {
+                  episode ? (
+                    <Slider 
+                       trackStyle={{ backgroundColor: '#04d361' }}
+                    />
+                  ) : (
+                    <Timer>
+                        <span>00 : 00</span>
+                        <div></div>
+                        <span>00 : 00</span>
+                    </Timer>
+                  )
+                }
                 <Actions>
                     <PlayerButton
                       angle={0}
@@ -34,7 +69,7 @@ export default function Player() {
                     <PlayerButton
                       angle={0}
                       background={colors.primary.purple.soft}
-                      icon="icons/play.svg"
+                      icon={isPlaying ? "icons/play.svg" : "icons/union.svg"}
                     />
                     <PlayerButton
                       angle={0}

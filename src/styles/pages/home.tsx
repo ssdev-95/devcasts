@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import colors from '../../colors.json'
+import colors from '../../../colors.json'
 
 export const Main = styled.main`
     height: 100%;

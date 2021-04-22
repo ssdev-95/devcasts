@@ -43,7 +43,7 @@ export const Actions = styled.div`
     gap: .75rem;
 `
 
-export const Section = styled.section`
+export const Empty = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,6 +51,31 @@ export const Section = styled.section`
     width: 18.5rem;
     background: linear-gradient(180deg, rgba(145,100,250,.8) 0%, rgba(0,0,0,0) 100%);
     border-radius: 18px;
+`
+
+export const Playing = styled.section`
+    text-align: center;
+    margin-top: .75rem;
+    height: 22.25rem;
+    width: 18.5rem;
+
+    img {
+        border-radius: 1.5rem;
+    }
+
+    strong {
+        display: block;
+        margin-top: 2rem;
+        font: 400 1.25rem 'Inter';
+        line-height: 1.75rem;
+    }
+
+    span {
+        display: block;
+        margin-top: 1rem;
+        opacity: .6;
+        line-height: 1.5rem;
+    }
 `
 
 export const Footer = styled.footer`

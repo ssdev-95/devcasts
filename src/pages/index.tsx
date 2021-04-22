@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext} from 'react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,7 +10,9 @@ import { formatDuration } from '../utils/formatDuration'
 import { api } from '../services/api'
 
 import Card from '../components/Card'
-import { Main, Section } from '../styles/home'
+import { Main, Section } from '../styles/pages/home'
+
+import { PlayerContext } from '../contexts/Player'
 
 interface Episode {
 	id: string;
@@ -29,6 +31,8 @@ interface HomeProps {
 }
 
 export default function Home({ latestEps, allEps }: HomeProps) {
+
+	const { play } = useContext(PlayerContext)
 
 	return (
 		<Main>
@@ -79,7 +83,7 @@ export default function Home({ latestEps, allEps }: HomeProps) {
 									<td style={{width:'110px'}}>{ep.publishedAt}</td>
 									<td>{ep.durationString}</td>
 									<td>
-									<button type="button">
+									<button onClick={()=>play(ep)} type="button">
 										<img src="icons/play.svg" alt="Play Episode" />
 									</button>
 									</td>

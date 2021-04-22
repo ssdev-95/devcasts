@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { PlayerContext } from '../../contexts/Player'
 
 import { Container, Details } from './styles'
 
 export default function Card({episode}: any) {
+    const { play } = useContext(PlayerContext)
+    
     const {
         id,
         title,
@@ -31,7 +35,7 @@ export default function Card({episode}: any) {
                 <span>{publishedAt}</span>
                 <span>{durationString}</span>
             </Details>
-            <button type="button">
+            <button onClick={()=>play(episode)} type="button">
                 <img
                   src="icons/play.svg" 
                   alt="Play episode"

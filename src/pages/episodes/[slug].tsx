@@ -1,5 +1,5 @@
+import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -9,7 +9,7 @@ import { format, parseISO } from 'date-fns'
 import { api } from '../../services/api'
 import { formatDuration } from '../../utils/formatDuration'
 
-import { EpisodeContainer, Thumbnail, Description } from './episode'
+import { EpisodeContainer, Thumbnail, Description } from '../../styles/pages/episode'
 
 interface Episode {
 	id: string;
@@ -28,7 +28,6 @@ interface EpisodeProps {
 }
 
 export default function Episode({ episode }: EpisodeProps) {
-    const router = useRouter()
     return (
         <EpisodeContainer>
             <Thumbnail>
@@ -54,16 +53,33 @@ export default function Episode({ episode }: EpisodeProps) {
     )
 }
 
+//incremenal static regeneration
 export const getStaticPaths:GetStaticPaths = async () => {
+    const { data } = await api.get('episodes', {
+		params: {
+			_limit: 3,
+			_sort: 'published_at',
+			_order: 'desc'
+		}
+	})
+
+    const paths = data.map(ep=>{
+        return {
+            params: {
+                slug: ep.id
+            }
+        }
+    })
+
     return {
-        paths: [],
+        paths,
         fallback: 'blocking'
     }
 }
 
 export const getStaticProps:GetStaticProps = async (ctx) => {
     const { slug } = ctx.params
-    const {data} = await api.get(`/episodes/${slug}`)
+    const { data } = await api.get(`/episodes/${slug}`)
 
     const episode = {
 			id: data.id,

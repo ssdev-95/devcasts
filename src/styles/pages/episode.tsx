@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import colors from '../../../colors.json'
 
@@ -26,6 +27,7 @@ export const Thumbnail = styled.div`
 
         font-size: 0;
         transition: filter .2s ease;
+        cursor: pointer;
 
         &:first-child {
             left: 0;
