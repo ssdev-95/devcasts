@@ -18,7 +18,8 @@ interface ContextData {
     currentEpIndex: number;
     isPlaying: boolean;
     play: (ep:Podcast)=>void
-
+    togglePlay: ()=>void;
+    setPlayingState: (state: boolean)=>void
 }
 
 export const PlayerContext = createContext({} as ContextData)
@@ -31,6 +32,15 @@ export const PlayerProvider = ({children}: ProviderProps) => {
     const play = (ep:Podcast) => {
         setPodcasts([ep])
         setCurrentEpIndex(0)
+        setIsPlaying(true)
+    }
+
+    const togglePlay = () => { 
+        setIsPlaying(!isPlaying)
+    }
+
+    const setPlayingState = (state: boolean) => {
+        setIsPlaying(state)
     }
 
     return (
@@ -38,7 +48,9 @@ export const PlayerProvider = ({children}: ProviderProps) => {
             podcasts,
             currentEpIndex,
             isPlaying,
-            play
+            play,
+            togglePlay,
+            setPlayingState
         }}>
             {children}
         </ PlayerContext.Provider>
