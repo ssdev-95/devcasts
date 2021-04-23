@@ -63,6 +63,10 @@ export const Button = styled.button`
         opacity: .45;
         cursor: default;
     }
+
+    &.isActive {
+        filter: invert(.35) sepia(1) saturate(3) hue-rotate(100deg);
+    }
 `
 
 export const Empty = styled.section`

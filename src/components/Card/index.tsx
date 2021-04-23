@@ -1,13 +1,29 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { PlayerContext } from '../../contexts/Player'
+import { usePlayer } from '../../contexts/Player'
 
 import { Container, Details } from './styles'
 
-export default function Card({episode}: any) {
-    const { play } = useContext(PlayerContext)
+interface Podcast {
+    id: string;
+    title: string;
+    thumbnail: string;
+    members: string;
+    url: string;
+    durationString: string;
+    publishedAt: string;
+}
+
+interface CardProps {
+    episode: Podcast;
+    episodeList: Podcast[];
+    index: number;
+}
+
+export default function Card({ episode, index, episodeList }: CardProps) {
+    const { playList } = usePlayer()
     
     const {
         id,
@@ -35,7 +51,7 @@ export default function Card({episode}: any) {
                 <span>{publishedAt}</span>
                 <span>{durationString}</span>
             </Details>
-            <button onClick={()=>play(episode)} type="button">
+            <button onClick={()=>playList(episodeList, index)} type="button">
                 <img
                   src="icons/play.svg" 
                   alt="Play episode"

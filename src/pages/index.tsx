@@ -1,5 +1,6 @@
-import React, { useContext} from 'react'
+import React from 'react'
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,7 +13,7 @@ import { api } from '../services/api'
 import Card from '../components/Card'
 import { Main, Section } from '../styles/pages/home'
 
-import { PlayerContext } from '../contexts/Player'
+import { usePlayer } from '../contexts/Player'
 
 interface Episode {
 	id: string;
@@ -32,17 +33,22 @@ interface HomeProps {
 
 export default function Home({ latestEps, allEps }: HomeProps) {
 
-	const { play } = useContext(PlayerContext)
+	const { playList } = usePlayer()
+
+    const episodes = [...latestEps, ...allEps]
 
 	return (
 		<Main>
+			<Head>
+				<title>Home | Dev.casts&trade;</title>
+			</Head>
 			<Section >
 				<h2>Latest</h2>
 				<ul>{
-					latestEps.map(ep=>{
+					latestEps.map((ep, index)=>{
 						return (
 							<li key={ep.id}>
-								<Card episode={ep} />
+								<Card episode={ep} index={index} episodeList={episodes} />
 							</li>
 						)
 					})
@@ -62,7 +68,7 @@ export default function Home({ latestEps, allEps }: HomeProps) {
 						</tr>
 					</thead>
 					<tbody>{
-						allEps.map(ep=>{
+						allEps.map((ep, index)=>{
 							return(
 								<tr key={ep.id}>
 									<td>
@@ -83,7 +89,7 @@ export default function Home({ latestEps, allEps }: HomeProps) {
 									<td style={{width:'110px'}}>{ep.publishedAt}</td>
 									<td>{ep.durationString}</td>
 									<td>
-									<button onClick={()=>play(ep)} type="button">
+									<button onClick={()=>playList(episodes, (index+latestEps.length))} type="button">
 										<img src="icons/play.svg" alt="Play Episode" />
 									</button>
 									</td>

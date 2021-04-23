@@ -2,6 +2,7 @@ import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import Head from 'next/head'
 
 import ptBR from 'date-fns/locale/pt-BR'
 import { format, parseISO } from 'date-fns'
@@ -30,6 +31,9 @@ interface EpisodeProps {
 export default function Episode({ episode }: EpisodeProps) {
     return (
         <EpisodeContainer>
+            <Head>
+                <title>{episode.title} | Dev.casts&trade;</title>
+            </Head>
             <Thumbnail>
                 <button type="button">
                     <Link href="/">

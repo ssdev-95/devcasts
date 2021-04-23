@@ -1,7 +1,5 @@
 import '../styles/globals.css'
 
-import Head from 'next/head'
-
 import Header from '../components/Header'
 import Player from '../components/Player'
 
@@ -11,9 +9,6 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			<PlayerProvider>
-			<Head>
-				<title>Dev.casts&trade;</title>
-			</Head>
 			<div className="container">
 				<main>
 					<Header />
