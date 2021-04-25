@@ -1,28 +1,22 @@
 {
   "name": "devcasts",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "server": "json-server server.json -w -d 750 -p 3333"
+    "start": "next start"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "date-fns": "^2.21.1",
     "next": "10.1.3",
-    "rc-slider": "^9.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "styled-components": "^5.2.3"
+    "sass": "^1.32.11"
   },
   "devDependencies": {
     "@types/node": "^14.14.41",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
-    "@types/styled-components": "^5.1.9",
-    "json-server": "^0.16.3",
     "typescript": "^4.2.4"
   }
 }
