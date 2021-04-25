@@ -1,14 +1,14 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.scss'
+import { Container } from '../styles/pages/Home'
 
 export default function Home() {
 	return (
-		<div className={styles.container}>
+		<Container>
 			<Head>
-				<title>Create Next App</title>
+				<title>Home | Devcasts&trade;</title>
 				<link rel="icon" href="/favicon.svg" />
 			</Head>
 
-		</div>
+		</Container>
 	)
 }

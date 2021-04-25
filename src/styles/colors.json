@@ -1,23 +1,16 @@
 {
-  "text": {
-    "body": {
-      "soft": "#FFFFFF",
-      "medium": "#AFB2B1",
-      "dark": "#808080"
-    },
-    "heading": "#494D4B"
+  "white": "#FFFFFF",
+  "green": "#04D361",
+  "purple": {
+    "soft": "#9F75FF",
+    "medium": "#8257E5",
+    "dark": "#6F48C9"
   },
-  "items": {
-    "line": "#E6E8EB",
-    "shape": "#F7F8FA",
-    "background": "#FFFFFF"
-  },
-  "primary": {
-    "green": "#04D361",
-    "purple": {
-      "soft": "#9F75FF",
-      "medium": "#8257E5",
-      "dark": "#6F48C9"
-    }
+  "gray": {
+    "thin": "#F7F8FA",
+    "light": "#E6E8EB",
+    "soft": "#AFB2B1",
+    "medium": "#808080",
+    "dark": "#494D4B"
   }
 }
