@@ -2,7 +2,8 @@
   "white": "#FFFFFF",
   "green": "#04D361",
   "purple": {
-    "soft": "#9F75FF",
+    "light": "#9F75FF",
+    "soft": "#9164FA",
     "medium": "#8257E5",
     "dark": "#6F48C9"
   },
