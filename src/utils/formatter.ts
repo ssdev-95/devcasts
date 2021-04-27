@@ -10,8 +10,6 @@ export function formatDuration(duration: number) {
 
     const time = timeArray.join(':').padStart(2, '0')
 
-    console.log(time)
-
     return time
 }
 

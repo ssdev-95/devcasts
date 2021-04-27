@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 
-import { Container, Card } from '../styles/pages/Home'
- 
+import { HomeContainer, Card, Table } from '../styles/pages/Home'
+import Slider from '../components/ThemeSwitcher'
+
 import { formatDuration, formatDate } from '../utils/formatter'
 import server from '../../server.json'
 
@@ -23,30 +25,36 @@ interface HomeProps {
 	episodes: Episode[];
 }
 
-export default function Home({ episodes }: HomeProps ) {
+export default function Home({ episodes }: HomeProps) {
 	const latest = episodes.slice(0, 2)
 	const alleps = episodes.slice(2, episodes.length)
 	//lol
 	return (
-		<Container>
+		<HomeContainer>
 			<Head>
 				<title>Home | Devcasts&trade;</title>
 				<link rel="icon" href="/favicon.svg" />
 			</Head>
-
+			<Slider />
 			<div>
 				<h2>Latest episodes</h2>
 				<ul>{
-					latest.map(ep=>(
+					latest.map(ep => (
 						<Card key={ep.id}>
 							<Image
-							  width={120}
-							  height={120}
-							  src={ep.thumb}
-							  alt="Thumbnail"/>
-							<div></div>
+								width={120}
+								height={120}
+								src={ep.thumb}
+								alt="Thumbnail" />
+							<div>
+								<Link href={`/episodes/${ep.id}`}>
+									<span>{ep.name}</span>
+								</Link>
+								<span>{ep.member}</span>
+								<span>{`${ep.createdAt} | ${ep.formatedDuration}`}</span>
+							</div>
 							<button>
-								<img src="/play.svg" alt="Icon"/>
+								<img src="/play.svg" alt="Icon" />
 							</button>
 						</Card>
 					))
@@ -54,9 +62,43 @@ export default function Home({ episodes }: HomeProps ) {
 			</div>
 			<div>
 				<h2>All episodes</h2>
+				<Table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Podcast</th>
+							<th>Duration</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>{
+						alleps.map(ep => (
+							<tr key={ep.id}>
+								<td>
+									<Image src={ep.thumb} width={80} height={80} objectFit="cover" />
+								</td>
+								<td>
+									<div>
+										<Link href={`/episodes/${ep.id}`}>
+											<span>{ep.name}</span>
+										</Link>
+										<span>{ep.member}</span>
+										<span>{ep.createdAt}</span>
+									</div>
+								</td>
+								<td>{ep.formatedDuration}</td>
+								<td>
+									<button>
+										<img src="/play.svg" alt="Icon" />
+									</button>
+								</td>
+							</tr>
+						))
+					}</tbody>
+				</Table>
 			</div>
 
-		</Container>
+		</HomeContainer>
 	)
 }
 

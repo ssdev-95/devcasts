@@ -1,8 +1,13 @@
 import React from 'react'
-import { Container } from './styles'
+import { PlayerContainer, Heading } from './styles'
 
 export default function Player() {
     return (
-        <Container></Container>
+        <PlayerContainer>
+            <Heading>
+                <img src="/favicon.svg" />
+                <span>Listening now</span>
+            </Heading>
+        </PlayerContainer>
     )
 }

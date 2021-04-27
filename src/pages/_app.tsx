@@ -3,15 +3,19 @@ import '../styles/globals.css'
 import Header from '../components/Header'
 import Player from '../components/Player'
 
+import { ThemeProvider } from '../contexts/Theme'
+
 function MyApp({ Component, pageProps }) {
 	return (
-		<div className="container">
-			<div>
-				<Header />
-				<Component {...pageProps} />
+		<ThemeProvider>
+			<div className="appcontainer">
+				<div>
+					<Header />
+					<Component {...pageProps} />
+				</div>
+				<Player />
 			</div>
-			<Player />
-		</div>
+		</ThemeProvider>
 	)
 }
 

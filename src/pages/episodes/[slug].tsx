@@ -1,10 +1,11 @@
 import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { formatDate, formatDuration } from '../../utils/formatter'
 
-import { Container, Thumb } from '../../styles/pages/Episode'
+import { EpisodeContainer, Thumbnail } from '../../styles/pages/Episode'
 import { episodes } from '../../../server.json'
 
 interface Episode {
@@ -35,11 +36,13 @@ export default function Episode({ episode }: EpisodeProps) {
 	} = episode
 
 	return (
-		<Container>
-			<Thumb>
-				<button>
-					<img src="/arrow.svg" alt="Icon" />
-				</button>
+		<EpisodeContainer>
+			<Thumbnail>
+				<Link href="/">
+					<button>
+						<img src="/arrow.svg" alt="Icon" />
+					</button>
+				</Link>
 				<Image
 				   src={thumb}
 				   width={750}
@@ -49,8 +52,8 @@ export default function Episode({ episode }: EpisodeProps) {
 				<button>
 					<img src="/play.svg" alt="Icon" />
 				</button>
-			</Thumb>
-		</Container>
+			</Thumbnail>
+		</EpisodeContainer>
 	)
 }
 

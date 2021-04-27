@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../colors.json'
 
-export const Container = styled.div`
+export const EpisodeContainer = styled.div`
     width: 100%;
     height: 90vh;
 
@@ -17,7 +17,7 @@ export const Container = styled.div`
     padding: 2.65rem 4rem;
 `
 
-export const Thumb = styled.div`
+export const Thumbnail = styled.div`
     width: 50%;
     display: flex;
 `
