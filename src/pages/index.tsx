@@ -18,7 +18,7 @@ interface Episode {
 	formatedDuration: string;
 	url: string;
 	member: string;
-	createdAt: string;
+	publishedAt: string;
 }
 
 interface HomeProps {
@@ -51,7 +51,7 @@ export default function Home({ episodes }: HomeProps) {
 									<span>{ep.name}</span>
 								</Link>
 								<span>{ep.member}</span>
-								<span>{`${ep.createdAt} | ${ep.formatedDuration}`}</span>
+								<span>{`${ep.publishedAt} | ${ep.formatedDuration}`}</span>
 							</div>
 							<button>
 								<img src="/play.svg" alt="Icon" />
@@ -83,7 +83,7 @@ export default function Home({ episodes }: HomeProps) {
 											<span>{ep.name}</span>
 										</Link>
 										<span>{ep.member}</span>
-										<span>{ep.createdAt}</span>
+										<span>{ep.publishedAt}</span>
 									</div>
 								</td>
 								<td>{ep.formatedDuration}</td>
@@ -114,7 +114,7 @@ export const getStaticProps: GetStaticProps = async () => {
 			formatedDuration: formatDuration(file.duration),
 			url: file.url,
 			member: members,
-			createdAt: formatDate(published_at)
+			publishedAt: formatDate(published_at)
 		}
 	})
 
