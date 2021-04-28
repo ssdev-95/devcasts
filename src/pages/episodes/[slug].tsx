@@ -5,8 +5,10 @@ import Link from 'next/link'
 
 import { formatDate, formatDuration } from '../../utils/formatter'
 
-import { EpisodeContainer, Thumbnail } from '../../styles/pages/Episode'
+import { EpisodeContainer, Thumbnail, PodcastDetails } from '../../styles/pages/Episode'
 import { episodes } from '../../../server.json'
+
+import { usePlayer } from '../../contexts/PlayerContext'
 
 interface Episode {
 	id: string;
@@ -29,30 +31,43 @@ export default function Episode({ episode }: EpisodeProps) {
 		id,
 		name,
 		description,
-		thumb,
-		formatedDuration,
 		member,
-		publishedAt
+		publishedAt,
+		thumb,
 	} = episode
+
+	const { play } = usePlayer()
 
 	return (
 		<EpisodeContainer>
 			<Thumbnail>
 				<Link href="/">
-					<button>
+					<button
+					   style={{left: '-30px'}}
+					   type="button"
+					>
 						<img src="/arrow.svg" alt="Icon" />
 					</button>
 				</Link>
 				<Image
 				   src={thumb}
-				   width={750}
-				   height={475}
+				   width={700}
+				   height={160}
 				   objectFit="cover"
 				/>
-				<button>
+				<button
+				   style={{right: '-30px'}}
+				   onClick={()=>play(episode)}
+				>
 					<img src="/play.svg" alt="Icon" />
 				</button>
 			</Thumbnail>
+			<header>
+                <h1>{name}</h1>
+                <span>{member}</span>
+                <span>{publishedAt}</span>
+            </header>
+			<PodcastDetails dangerouslySetInnerHTML={{__html: description}} />
 		</EpisodeContainer>
 	)
 }

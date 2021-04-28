@@ -9,6 +9,8 @@ import Slider from '../components/ThemeSwitcher'
 import { formatDuration, formatDate } from '../utils/formatter'
 import server from '../../server.json'
 
+import { usePlayer } from '../contexts/PlayerContext'
+
 interface Episode {
 	id: string;
 	name: string;
@@ -28,6 +30,7 @@ interface HomeProps {
 export default function Home({ episodes }: HomeProps) {
 	const latest = episodes.slice(0, 2)
 	const alleps = episodes.slice(2, episodes.length)
+	const { playList } = usePlayer()
 	//lol
 	return (
 		<HomeContainer>
@@ -39,7 +42,7 @@ export default function Home({ episodes }: HomeProps) {
 			<div>
 				<h2>Latest episodes</h2>
 				<ul>{
-					latest.map(ep => (
+					latest.map((ep, index) => (
 						<Card key={ep.id}>
 							<Image
 								width={120}
@@ -53,7 +56,7 @@ export default function Home({ episodes }: HomeProps) {
 								<span>{ep.member}</span>
 								<span>{`${ep.publishedAt} | ${ep.formatedDuration}`}</span>
 							</div>
-							<button>
+							<button onClick={()=>playList(episodes, index)} type="button">
 								<img src="/play.svg" alt="Icon" />
 							</button>
 						</Card>
@@ -72,7 +75,7 @@ export default function Home({ episodes }: HomeProps) {
 						</tr>
 					</thead>
 					<tbody>{
-						alleps.map(ep => (
+						alleps.map((ep, index) => (
 							<tr key={ep.id}>
 								<td>
 									<Image src={ep.thumb} width={80} height={80} objectFit="cover" />
@@ -88,7 +91,7 @@ export default function Home({ episodes }: HomeProps) {
 								</td>
 								<td>{ep.formatedDuration}</td>
 								<td>
-									<button>
+									<button onClick={()=>playList(episodes, (index+latest.length))} type="button">
 										<img src="/play.svg" alt="Icon" />
 									</button>
 								</td>

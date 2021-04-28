@@ -12,6 +12,7 @@ export const SliderContainer = styled.div`
 export const Wrapper = styled.div`
     height: 8px;
     width: 30px;
+    border-radius: 24px;
 
     position: relative;
     transition: all .2s ease;

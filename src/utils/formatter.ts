@@ -8,7 +8,8 @@ export function formatDuration(duration: number) {
     
     const timeArray = [Math.floor(hours), Math.floor(minutes), Math.floor(seconds)]
 
-    const time = timeArray.join(':').padStart(2, '0')
+    const time = timeArray.map(unit=>(String(unit).padStart(2, '0')))
+                          .join(':')
 
     return time
 }

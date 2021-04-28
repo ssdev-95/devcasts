@@ -16,11 +16,13 @@ interface PlayerContextData {
     isPlaying: boolean;
     isLooping: boolean;
     isInShuffle: boolean;
+    hasPrevious: boolean;
+    hasNext: boolean;
 
     episodes: Episode[];
     currentEpIndex: number;
 
-    play: ()=>void;
+    play: (episode: Episode)=>void;
     pause: ()=>void;
     playList: (list: Episode[], index: number)=>void;
 
@@ -50,10 +52,6 @@ export const PlayerProvider = ({ children }: ProviderProps) => {
 
     const [episodes, setEpisodes] = useState([])
 
-    function play() {
-        setIsPlaying(true)
-    }
-
     function pause() {
         setIsPlaying(false)
     }
@@ -63,6 +61,11 @@ export const PlayerProvider = ({ children }: ProviderProps) => {
         setCurrentEpIndex(index)
         setIsPlaying(true)
     }
+    function play(episode: Episode) {
+        setEpisodes([episode]);
+        setCurrentEpIndex(0);
+        setIsPlaying(true);
+      }
 
     const hasPrevious = (currentEpIndex-1)>0
     const hasNext = isInShuffle || (currentEpIndex+1)<episodes.length
@@ -106,6 +109,8 @@ export const PlayerProvider = ({ children }: ProviderProps) => {
             isPlaying,
             isLooping,
             isInShuffle,
+            hasPrevious,
+            hasNext,
             
             episodes,
             currentEpIndex,

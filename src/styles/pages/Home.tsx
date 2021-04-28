@@ -105,6 +105,7 @@ export const Table = styled.table`
         tr {
             &:hover {
                 border-bottom: 1px solid ${colors.gray.medium};
+                filter: brightness(.8);
             }
 
             td {

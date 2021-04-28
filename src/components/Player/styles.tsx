@@ -7,7 +7,7 @@ const gradientoend = 'rgba(0, 0, 0, 0)'
 export const PlayerContainer = styled.div`
     height: 100%;
     width: 25vw;
-    padding: 2rem 0;
+    padding: 1rem 0;
 
     display: flex;
     flex-direction: column;
@@ -56,6 +56,8 @@ export const Details = styled.section`
     height: 22.25rem;
     width: 18.5rem;
 
+    color: ${colors.white};
+
     img {
         border-radius: 1.5rem;
     }
@@ -63,7 +65,7 @@ export const Details = styled.section`
     strong {
         display: block;
         margin-top: 2rem;
-        font: 400 1.25rem 'Inter';
+        font: 400 .95rem 'Inter';
         line-height: 1.75rem;
     }
 
@@ -105,4 +107,21 @@ export const Actions = styled.div`
     }
 `
 
-export const Trackbar = styled.div``
+export const Trackbar = styled.div`
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    span {
+        color: ${colors.white};
+        font-size: .9rem;
+    }
+`
+
+export const EmptyTrack = styled.div`
+    width: 7rem;
+    height: 3px;
+    background: ${colors.purple.light};
+`
